@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAFOS ZOO Tickets</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; overflow: hidden; }
+        #loading {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #2c7744 0%, #5a9e6f 100%);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <h2>Loading PAFOS ZOO App...</h2>
+        <p>Please wait</p>
+    </div>
+    
+    <iframe 
+        id="appFrame" 
+        style="width:100%; height:100vh; border:none; display:none;"
+        src="https://script.google.com/macros/s/AKfycbz6mvZwOwtRj5sgZzWNqWJYHTvscKh6j4az7HqPaGSvcChFPG5aARWkT_Wy7Y50rb97/exec"
+        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals allow-storage-access-by-user-activation"
+        allow="camera; microphone">
+    </iframe>
+    
+    <script>
+        window.onload = function() {
+            const frame = document.getElementById('appFrame');
+            const loading = document.getElementById('loading');
+            
+            // Show frame after 2 seconds
+            setTimeout(function() {
+                frame.style.display = 'block';
+                loading.style.display = 'none';
+            }, 2000);
+            
+            // Handle iframe errors
+            frame.onload = function() {
+                console.log('Iframe loaded successfully');
+            };
+            
+            frame.onerror = function() {
+                loading.innerHTML = `
+                    <h2>Connection Error</h2>
+                    <p>Unable to load the application.</p>
+                    <button onclick="window.location.reload()" 
+                            style="padding: 10px 20px; margin-top: 20px; 
+                                   background: white; color: #2c7744; 
+                                   border: none; border-radius: 5px;">
+                        Retry
+                    </button>
+                `;
+            };
+        };
+    </script>
+</body>
+</html>

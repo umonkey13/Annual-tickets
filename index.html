@@ -1,81 +1,278 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAFOS ZOO Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PAFOS ZOO Annual Tickets</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; overflow: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        
         #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2c7744 0%, #5a9e6f 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background: linear-gradient(135deg, #2c7744 0%, #5a9e6f 100%);
             color: white;
-            font-family: Arial, sans-serif;
+            text-align: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
         }
-        .spinner {
-            border: 8px solid #f3f3f3;
-            border-top: 8px solid #3498db;
-            border-radius: 50%;
+        
+        .loading-spinner {
             width: 60px;
             height: 60px;
-            animation: spin 1s linear infinite;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
             margin-bottom: 20px;
         }
+        
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        
+        #errorContainer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 999;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        #retryButton {
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #2c7744;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .app-container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
         }
     </style>
 </head>
 <body>
+    <!-- Loading Screen -->
     <div id="loading">
-        <div class="spinner"></div>
-        <h2>Loading PAFOS ZOO App...</h2>
-        <p>Please wait</p>
+        <div class="loading-spinner"></div>
+        <h1>PAFOS ZOO</h1>
+        <p class="loading-text">Loading Annual Ticket System...</p>
     </div>
     
-    <iframe 
-        id="appFrame" 
-        style="width:100%; height:100vh; border:none; display:none;"
-        src="https://script.google.com/macros/s/AKfycbz6mvZwOwtRj5sgZzWNqWJYHTvscKh6j4az7HqPaGSvcChFPG5aARWkT_Wy7Y50rb97/exec"
-        sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals allow-storage-access-by-user-activation"
-        allow="camera; microphone">
-    </iframe>
+    <!-- Error Container -->
+    <div id="errorContainer">
+        <h2>⚠️ Connection Issue</h2>
+        <p>Unable to connect to the ticket system.</p>
+        <p>Please check your internet connection.</p>
+        <button id="retryButton" onclick="loadApp()">Try Again</button>
+        <p style="margin-top: 20px; font-size: 12px; color: #666;">
+            If this persists, contact support.
+        </p>
+    </div>
     
+    <!-- Main App Container -->
+    <div class="app-container">
+        <iframe 
+            id="appFrame"
+            title="PAFOS ZOO Ticket System"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+            allow="camera; microphone; geolocation"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
     <script>
-        window.onload = function() {
-            const frame = document.getElementById('appFrame');
+        // Google Apps Script URL
+        const APP_URL = "https://script.google.com/macros/s/AKfycbz6mvZwOwtRj5sgZzWNqWJYHTvscKh6j4az7HqPaGSvcChFPG5aARWkT_Wy7Y50rb97/exec";
+        
+        // Alternative URL for testing (remove after testing)
+        const TEST_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=YOUR_CONTENT_KEY";
+        
+        let retryCount = 0;
+        const MAX_RETRIES = 3;
+        
+        function loadApp() {
             const loading = document.getElementById('loading');
+            const errorContainer = document.getElementById('errorContainer');
+            const iframe = document.getElementById('appFrame');
             
-            // Show frame after 2 seconds
-            setTimeout(function() {
-                frame.style.display = 'block';
-                loading.style.display = 'none';
-            }, 2000);
+            // Hide error, show loading
+            errorContainer.style.display = 'none';
+            loading.style.display = 'flex';
             
-            // Handle iframe errors
-            frame.onload = function() {
-                console.log('Iframe loaded successfully');
+            // Clear iframe
+            iframe.style.display = 'none';
+            iframe.src = '';
+            
+            // Add timestamp to prevent caching
+            const timestamp = new Date().getTime();
+            const urlWithCacheBust = `${APP_URL}?t=${timestamp}`;
+            
+            // Set iframe source
+            iframe.src = urlWithCacheBust;
+            
+            // Set loading timeout
+            const loadTimeout = setTimeout(() => {
+                if (retryCount < MAX_RETRIES) {
+                    retryCount++;
+                    console.log(`Retry attempt ${retryCount}`);
+                    loadApp();
+                } else {
+                    showError();
+                }
+            }, 10000); // 10 second timeout
+            
+            // When iframe loads successfully
+            iframe.onload = function() {
+                clearTimeout(loadTimeout);
+                
+                // Check if iframe content loaded
+                try {
+                    if (iframe.contentDocument && iframe.contentDocument.body) {
+                        console.log('Iframe loaded successfully');
+                        loading.style.opacity = '0';
+                        setTimeout(() => {
+                            loading.style.display = 'none';
+                            iframe.style.display = 'block';
+                        }, 500);
+                        retryCount = 0;
+                    } else {
+                        throw new Error('Empty iframe content');
+                    }
+                } catch (e) {
+                    console.error('Iframe access error:', e);
+                    if (retryCount < MAX_RETRIES) {
+                        retryCount++;
+                        setTimeout(loadApp, 2000);
+                    } else {
+                        showError();
+                    }
+                }
             };
             
-            frame.onerror = function() {
-                loading.innerHTML = `
-                    <h2>Connection Error</h2>
-                    <p>Unable to load the application.</p>
+            // If iframe fails to load
+            iframe.onerror = function() {
+                clearTimeout(loadTimeout);
+                console.error('Iframe load error');
+                
+                if (retryCount < MAX_RETRIES) {
+                    retryCount++;
+                    setTimeout(loadApp, 2000);
+                } else {
+                    showError();
+                }
+            };
+        }
+        
+        function showError() {
+            const loading = document.getElementById('loading');
+            const errorContainer = document.getElementById('errorContainer');
+            
+            loading.style.display = 'none';
+            errorContainer.style.display = 'block';
+            
+            // Create a simple form as fallback
+            createFallbackForm();
+        }
+        
+        function createFallbackForm() {
+            // Simple fallback form if Google Apps Script fails
+            const errorContainer = document.getElementById('errorContainer');
+            
+            const fallbackHTML = `
+                <div style="max-width: 500px; margin: 0 auto; padding: 20px;">
+                    <h2 style="color: #2c7744;">PAFOS ZOO Annual Ticket</h2>
+                    <p style="margin: 20px 0; color: #666;">
+                        The online system is temporarily unavailable. 
+                        Please contact the zoo directly for ticket purchases.
+                    </p>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                        <p><strong>Contact Information:</strong></p>
+                        <p>📞 Telephone: [Zoo Phone Number]</p>
+                        <p>✉️ Email: sales@pafoszoo.com</p>
+                        <p>📍 Visit: PAFOS ZOO Ticket Office</p>
+                    </div>
                     <button onclick="window.location.reload()" 
-                            style="padding: 10px 20px; margin-top: 20px; 
-                                   background: white; color: #2c7744; 
-                                   border: none; border-radius: 5px;">
-                        Retry
+                            style="margin-top: 20px; padding: 12px 30px; 
+                                   background: #2c7744; color: white; 
+                                   border: none; border-radius: 8px; 
+                                   font-size: 16px; cursor: pointer;">
+                        Try Again
                     </button>
-                `;
-            };
-        };
+                </div>
+            `;
+            
+            errorContainer.innerHTML = fallbackHTML;
+        }
+        
+        // Add message handler for iframe communication
+        window.addEventListener('message', function(event) {
+            // Handle messages from iframe if needed
+            console.log('Message from iframe:', event.data);
+        });
+        
+        // Load app when page loads
+        document.addEventListener('DOMContentLoaded', loadApp);
+        
+        // Handle back button in app
+        window.addEventListener('popstate', function(event) {
+            const iframe = document.getElementById('appFrame');
+            if (iframe.contentWindow) {
+                iframe.contentWindow.postMessage('back', '*');
+            }
+        });
+        
+        // Handle app visibility changes
+        document.addEventListener('visibilitychange', function() {
+            if (!document.hidden) {
+                // App came to foreground, refresh iframe
+                const iframe = document.getElementById('appFrame');
+                if (iframe.src) {
+                    iframe.contentWindow.location.reload();
+                }
+            }
+        });
     </script>
 </body>
 </html>

@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PAFOS ZOO Tickets</title>
+    <title>PAFOS ZOO Annual Tickets</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
+            background: linear-gradient(135deg, #2c7744 0%, #5a9e6f 100%);
         }
-        #loader {
+        #loading {
             position: fixed;
             top: 0;
             left: 0;
@@ -23,14 +24,16 @@
             justify-content: center;
             align-items: center;
             color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
             z-index: 1000;
         }
         .spinner {
             border: 4px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             border-top: 4px solid white;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
             margin-bottom: 20px;
         }
@@ -41,65 +44,35 @@
     </style>
 </head>
 <body>
-    <div id="loader">
+    <div id="loading">
         <div class="spinner"></div>
         <h2>Loading PAFOS ZOO Ticket System...</h2>
+        <p>Please wait</p>
     </div>
     
-    <!-- Fullscreen iframe -->
+    <!-- Simple iframe - no complex error handling -->
     <iframe 
         id="appFrame"
-        style="width:100%; height:100vh; border:none; visibility:hidden;"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-storage-access-by-user-activation"
-        allow="camera; microphone; fullscreen"
-        allowfullscreen
-        webkitallowfullscreen
-        mozallowfullscreen>
+        style="width:100%; height:100vh; border:none;"
+        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals"
+        allow="camera; microphone"
+        src="https://script.google.com/macros/s/AKfycbz6mvZwOwtRj5sgZzWNqWJYHTvscKh6j4az7HqPaGSvcChFPG5aARWkT_Wy7Y50rb97/exec">
     </iframe>
 
     <script>
-        // Load your Google Apps Script
-        const APP_URL = 'https://script.google.com/macros/s/AKfycbz6mvZwOwtRj5sgZzWNqWJYHTvscKh6j4az7HqPaGSvcChFPG5aARWkT_Wy7Y50rb97/exec';
-        
-        function loadApp() {
+        // Simple load handling
+        window.addEventListener('DOMContentLoaded', function() {
             const iframe = document.getElementById('appFrame');
-            const loader = document.getElementById('loader');
+            const loading = document.getElementById('loading');
             
-            // Add cache-busting parameter
-            const timestamp = new Date().getTime();
-            const url = APP_URL + '?t=' + timestamp + '&source=mobile';
+            // Hide loading after 3 seconds (give iframe time to load)
+            setTimeout(function() {
+                loading.style.display = 'none';
+            }, 3000);
             
-            iframe.src = url;
-            
-            // Show iframe after loading
-            iframe.onload = function() {
-                iframe.style.visibility = 'visible';
-                loader.style.display = 'none';
-                console.log('App loaded successfully');
-            };
-            
-            // Error handling
-            iframe.onerror = function() {
-                loader.innerHTML = `
-                    <h2>Connection Error</h2>
-                    <p>Unable to load the ticket system.</p>
-                    <button onclick="location.reload()" style="padding: 10px 20px; margin-top: 20px;">
-                        Retry
-                    </button>
-                `;
-            };
-            
-            // Timeout after 10 seconds
-            setTimeout(() => {
-                if (loader.style.display !== 'none') {
-                    iframe.style.visibility = 'visible';
-                    loader.style.display = 'none';
-                }
-            }, 10000);
-        }
-        
-        // Load when page is ready
-        window.addEventListener('DOMContentLoaded', loadApp);
+            // If iframe fails to load, it will just show loading indefinitely
+            // No error message - better user experience
+        });
     </script>
 </body>
 </html>

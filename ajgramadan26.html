@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alexander Johnson Group - Ramadan 2026 (Autoplay · Condensed)</title>
+<title>Alexander Johnson Group - Ramadan 2026 (Larger Last Frame)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@200;300;400;500;600&family=Amiri:ital@0;1&display=swap');
 
@@ -143,17 +143,17 @@
     pointer-events: none;
   }
 
-  /* ===== AJG LOGO - TOP CENTRAL + ENLARGED ===== */
+  /* ===== AJG LOGO - TOP CENTRAL ===== */
   .ajg-logo-ramadan {
     position: absolute;
-    top: 40px;                /* position top central */
+    top: 40px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 30;
     opacity: 0;
     transition: opacity 1.5s ease;
     pointer-events: none;
-    width: 240px;            /* increased from 180px — larger */
+    width: 240px;
     height: auto;
   }
 
@@ -187,7 +187,7 @@
 
   .frame.active { opacity: 1; }
   .frame.fading-out {
-    transition: opacity 0.6s ease;  /* faster crossfade for condensation */
+    transition: opacity 0.6s ease;
     opacity: 0;
   }
 
@@ -218,7 +218,7 @@
 
   /* ===== ALL TEXT SIZES INCREASED BY +2px ===== */
   .f1-year {
-    font-size: 142px; /* +2 from 140px */
+    font-size: 142px;
     font-weight: 400;
     letter-spacing: 0.02em;
     color: #FFF8E7;
@@ -233,7 +233,7 @@
   }
 
   .f1-arabic {
-    font-size: 62px; /* +2 from 60px */
+    font-size: 62px;
     margin-bottom: 20px;
     opacity: 0;
     color: rgba(255, 200, 100, 0.9);
@@ -258,7 +258,7 @@
   }
 
   .f1-subtitle {
-    font-size: 34px; /* +2 from 32px */
+    font-size: 34px;
     font-weight: 300;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -272,7 +272,7 @@
   }
 
   .f2-arabic {
-    font-size: 50px; /* +2 from 48px */
+    font-size: 50px;
     margin-bottom: 30px;
     opacity: 0;
     color: rgba(255, 200, 100, 0.9);
@@ -284,7 +284,7 @@
   }
 
   .f2-heading {
-    font-size: 56px; /* +2 from 54px */
+    font-size: 56px;
     font-weight: 400;
     font-style: italic;
     line-height: 1.5;
@@ -299,7 +299,7 @@
   }
 
   .f2-qualities {
-    font-size: 24px; /* +2 from 22px */
+    font-size: 24px;
     font-weight: 300;
     letter-spacing: 0.4em;
     text-transform: uppercase;
@@ -314,7 +314,7 @@
   }
 
   .f3-heading {
-    font-size: 70px; /* +2 from 68px */
+    font-size: 70px;
     font-weight: 300;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -329,7 +329,7 @@
   }
 
   .f3-stat {
-    font-size: 36px; /* +2 from 34px */
+    font-size: 36px;
     font-weight: 300;
     line-height: 1.9;
     color: #FFF8E7;
@@ -349,7 +349,7 @@
   }
 
   .f4-heading {
-    font-size: 72px; /* +2 from 70px */
+    font-size: 72px;
     font-weight: 300;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -364,7 +364,7 @@
   }
 
   .f4-body {
-    font-size: 38px; /* +2 from 36px */
+    font-size: 38px;
     font-weight: 400;
     font-style: italic;
     line-height: 1.6;
@@ -378,7 +378,7 @@
   }
 
   .f4-blessing {
-    font-size: 32px; /* +2 from 30px */
+    font-size: 32px;
     color: #F4C430;
     margin-top: 40px;
     opacity: 0;
@@ -390,7 +390,7 @@
   }
 
   .f5-heading {
-    font-size: 72px; /* +2 from 70px */
+    font-size: 72px;
     font-weight: 300;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -405,7 +405,7 @@
   }
 
   .f5-body {
-    font-size: 40px; /* +2 from 38px */
+    font-size: 40px;
     font-weight: 400;
     font-style: italic;
     line-height: 1.6;
@@ -425,20 +425,21 @@
     margin-top: 40px;
     opacity: 0;
     color: rgba(244, 196, 48, 0.6);
-    font-size: 42px; /* +2 from 40px */
+    font-size: 42px;
   }
 
   .frame.active .f5-decoration {
     animation: fadeIn 0.8s ease 1.2s forwards;
   }
 
+  /* ===== 🟢 FRAME 6 - ENLARGED LOGO & TEXT ===== */
   .f6-logo {
-    width: 550px;
+    width: 850px;        /* ⬅️ INCREASED FROM 550px TO 850px - 55% BIGGER */
     height: auto;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     opacity: 0;
-    transform: scale(0.85);
-    filter: drop-shadow(0 0 40px rgba(230, 184, 0, 0.3));
+    transform: scale(1);  /* ⬅️ REMOVED scale(0.85) - NOW FULL SIZE */
+    filter: drop-shadow(0 0 60px rgba(230, 184, 0, 0.5));
   }
 
   .frame.active .f6-logo {
@@ -452,12 +453,12 @@
   }
 
   .f6-divider {
-    width: 100px;
+    width: 140px;        /* ⬅️ INCREASED FROM 100px TO 140px */
     height: 1px;
     background: linear-gradient(90deg, transparent, #F4C430, #E6B800, #F4C430, transparent);
-    margin: 25px auto;
+    margin: 30px auto;
     transform: scaleX(0);
-    box-shadow: 0 0 25px rgba(230, 184, 0, 0.4);
+    box-shadow: 0 0 35px rgba(230, 184, 0, 0.6);
   }
 
   .frame.active .f6-divider {
@@ -465,14 +466,14 @@
   }
 
   .f6-greeting {
-    font-size: 48px; /* +2 from 46px */
+    font-size: 58px;     /* ⬅️ INCREASED FROM 48px TO 58px */
     font-weight: 400;
     font-style: italic;
     color: #F4C430;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     opacity: 0;
     transform: translateY(15px);
-    text-shadow: 0 0 35px rgba(230, 184, 0, 0.5);
+    text-shadow: 0 0 45px rgba(230, 184, 0, 0.6);
   }
 
   .frame.active .f6-greeting {
@@ -480,14 +481,15 @@
   }
 
   .f6-locations {
-    font-size: 22px; /* +2 from 20px */
+    font-size: 28px;     /* ⬅️ INCREASED FROM 22px TO 28px */
     font-weight: 300;
     letter-spacing: 0.5em;
     text-transform: uppercase;
     color: #FFF8E7;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     opacity: 0;
     transform: translateY(10px);
+    text-shadow: 0 0 25px rgba(0,0,0,0.9);
   }
 
   .frame.active .f6-locations {
@@ -495,13 +497,14 @@
   }
 
   .f6-tagline {
-    font-size: 28px; /* +2 from 26px */
+    font-size: 34px;     /* ⬅️ INCREASED FROM 28px TO 34px */
     font-weight: 400;
     font-style: italic;
-    color: rgba(255, 248, 231, 0.9);
+    color: rgba(255, 248, 231, 0.95);
     opacity: 0;
     transform: translateY(10px);
     line-height: 1.5;
+    text-shadow: 0 0 30px rgba(0,0,0,0.9);
   }
 
   .frame.active .f6-tagline {
@@ -509,13 +512,14 @@
   }
 
   .f6-url {
-    font-size: 20px; /* +2 from 18px */
+    font-size: 24px;     /* ⬅️ INCREASED FROM 20px TO 24px */
     font-weight: 300;
-    letter-spacing: 0.25em;
-    color: rgba(255, 248, 231, 0.7);
-    margin-top: 30px;
+    letter-spacing: 0.3em;
+    color: rgba(255, 248, 231, 0.8);
+    margin-top: 35px;
     opacity: 0;
     transform: translateY(10px);
+    text-shadow: 0 0 25px rgba(0,0,0,0.9);
   }
 
   .frame.active .f6-url {
@@ -570,8 +574,8 @@
     background: radial-gradient(circle at 50% 50%, rgba(20, 15, 10, 0.95) 0%, rgba(10, 8, 5, 0.98) 100%);
     cursor: pointer;
     transition: opacity 0.5s ease;
-    opacity: 0;               /* hidden - autoplay */
-    pointer-events: none;     /* no click needed */
+    opacity: 0;
+    pointer-events: none;
   }
 
   .play-overlay.hidden {
@@ -616,6 +620,7 @@
     color: rgba(244, 196, 48, 0.8);
   }
 
+  /* ===== RESPONSIVE - LARGER LAST FRAME ===== */
   @media (max-width: 1100px) {
     .reel-container {
       width: 100vmin;
@@ -625,7 +630,21 @@
       width: 200px;
       top: 30px;
     }
-    .f6-logo { width: 400px; }
+    .f6-logo {
+      width: 600px;      /* ⬅️ INCREASED FROM 400px TO 600px */
+    }
+    .f6-greeting {
+      font-size: 48px;
+    }
+    .f6-locations {
+      font-size: 24px;
+    }
+    .f6-tagline {
+      font-size: 28px;
+    }
+    .f6-url {
+      font-size: 20px;
+    }
     .f1-year { font-size: 100px; }
   }
 </style>
@@ -633,12 +652,9 @@
 <body>
 
 <div class="reel-container" id="reel">
-  <!-- ===== RAMADAN VIDEO with jsDelivr CDN (works on GitHub) ===== -->
+  <!-- ===== RAMADAN VIDEO ===== -->
   <video class="ramadan-video" id="ramadanVideo" loop muted playsinline>
-    <!-- ✅ GitHub CDN VIA jsDelivr — REPLACED WITH WORKING URL -->
     <source src="https://cdn.jsdelivr.net/gh/umonkey13/Annual-tickets@main/201655-916080428_small.mp4" type="video/mp4">
-    <!-- Fallback local (dev only) -->
-    <source src="C:\Users\Simon\Downloads\201655-916080428_small.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
@@ -655,15 +671,12 @@
   <!-- ===== WARM SPARK CANVAS ===== -->
   <canvas id="warmSparks"></canvas>
 
-  <!-- ===== AJG LOGO - TOP CENTER + ENLARGED ===== -->
+  <!-- ===== AJG LOGO - TOP CENTER ===== -->
   <div class="ajg-logo-ramadan" id="ajgLogoRamadan">
-    <!-- ✅ GitHub CDN VIA jsDelivr — WORKING URL -->
-
-    <!-- fallback local (dev only) -->
-
+    <img src="https://cdn.jsdelivr.net/gh/umonkey13/Annual-tickets@main/AJG-Logo-Post.png" alt="Alexander Johnson Group">
   </div>
 
-  <!-- ===== PLAY OVERLAY (hidden = autoplay) ===== -->
+  <!-- ===== PLAY OVERLAY (hidden) ===== -->
   <div class="play-overlay" id="playOverlay">
     <div class="play-arabic">رمضان</div>
     <div class="play-btn">
@@ -709,12 +722,10 @@
     <div class="f5-decoration">✦</div>
   </div>
 
-  <!-- ===== FRAME 6 ===== -->
+  <!-- ===== FRAME 6 - NOW WITH MUCH LARGER LOGO & TEXT ===== -->
   <div class="frame" id="frame6">
     <div class="f6-logo">
-      <!-- ✅ GitHub CDN VIA jsDelivr — WORKING URL -->
       <img src="https://cdn.jsdelivr.net/gh/umonkey13/Annual-tickets@main/Untitled-1.png" alt="Alexander Johnson Group Logo">
-      <img src="C:\Users\Simon\Downloads\Untitled-1.png" alt="" style="display: none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';">
     </div>
     <div class="f6-divider"></div>
     <div class="f6-greeting serif">Ramadan Kareem</div>
@@ -725,7 +736,7 @@
 </div>
 
 <script>
-  // ===== WARM SPARKS (Amber/Orange) =====
+  // ===== WARM SPARKS =====
   const canvas = document.getElementById('warmSparks');
   const ctx = canvas.getContext('2d');
   let sparks = [];
@@ -739,9 +750,9 @@
     const startSide = Math.random();
     const colorRoll = Math.random();
     let color;
-    if (colorRoll < 0.4) color = '255, 193, 37';   // amber
-    else if (colorRoll < 0.7) color = '255, 169, 64'; // orange
-    else color = '244, 164, 96';                  // sand
+    if (colorRoll < 0.4) color = '255, 193, 37';
+    else if (colorRoll < 0.7) color = '255, 169, 64';
+    else color = '244, 164, 96';
     
     return {
       x: startSide < 0.5 ? Math.random() * canvas.width : (startSide < 0.75 ? -15 : canvas.width + 15),
@@ -781,8 +792,8 @@
     requestAnimationFrame(animateSparks);
   }
 
-  // ===== CONDENSED FRAME TIMING ~31.5 SECONDS TOTAL =====
-  const frameDurations = [2600, 2800, 3400, 3600, 3200, 4000]; // ⏱️ ~31.4s
+  // ===== CONDENSED FRAME TIMING =====
+  const frameDurations = [2600, 2800, 3400, 3600, 3200, 4000];
   const frames = document.querySelectorAll('.frame');
 
   function showFrame(index) {
@@ -798,10 +809,10 @@
           setTimeout(() => showFrame(index + 1), frameDurations[index]);
         }
       }
-    }, 600); // faster crossfade
+    }, 600);
   }
 
-  // ===== AUTOPLAY START =====
+  // ===== AUTOPLAY =====
   function startReel() {
     document.getElementById('playOverlay').classList.add('hidden');
     
@@ -831,14 +842,11 @@
     const video = document.getElementById('ramadanVideo');
     video.load();
     
-    // 🚀 AUTOPLAY TRIGGER
     setTimeout(startReel, 300);
   });
 
-  // (optional, but overlay is hidden anyway)
   document.getElementById('playOverlay').addEventListener('click', startReel);
 </script>
 
 </body>
 </html>
-

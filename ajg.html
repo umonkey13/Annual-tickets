@@ -628,7 +628,7 @@
 </div>
 
 <script>
-  // Ember particles (fire effect)
+ // Ember particles (fire effect)
   const canvas = document.getElementById('embers');
   const ctx = canvas.getContext('2d');
   let embers = [];
@@ -684,21 +684,38 @@
     requestAnimationFrame(animateEmbers);
   }
 
-  // Frame timing
-  const frameDurations = [4000, 4500, 5500, 5500, 5000, 5500];
+  // --- ADJUSTED TIMINGS HERE ---
+  // Values are in milliseconds (e.g., 6000 = 6 seconds)
+  const frameDurations = [
+    6000, // Frame 1: 2026 Title
+    6500, // Frame 2: Once every 60 years
+    8500, // Frame 3: Bold Decisions (Lots of text)
+    8500, // Frame 4: Momentum (Lots of text)
+    7000, // Frame 5: Vision
+    8000  // Frame 6: Final Logo/CTA
+  ];
+
   const frames = document.querySelectorAll('.frame');
 
   function showFrame(index) {
+    // Fade out previous frame
     frames.forEach(f => {
       f.classList.remove('active');
       f.classList.add('fading-out');
     });
+
+    // Wait for fade out animation (800ms) then show next
     setTimeout(() => {
       frames.forEach(f => f.classList.remove('fading-out'));
       if (index < frames.length) {
         frames[index].classList.add('active');
+        
+        // Loop back to start if it's the last frame, otherwise go to next
         if (index < frames.length - 1) {
           setTimeout(() => showFrame(index + 1), frameDurations[index]);
+        } else {
+            // Optional: Uncomment the line below to restart the reel automatically
+            // setTimeout(() => showFrame(0), frameDurations[index]);
         }
       }
     }, 800);
@@ -739,11 +756,11 @@
     const audio = document.getElementById('bgMusic');
     audio.load();
     
-    setTimeout(startReel, 300);
+    // Slight delay before auto-starting
+    setTimeout(startReel, 1000);
   });
 
   document.getElementById('playOverlay').addEventListener('click', startReel);
 </script>
-
 </body>
 </html>

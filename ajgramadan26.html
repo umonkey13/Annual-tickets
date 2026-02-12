@@ -433,13 +433,13 @@
   }
 
   .f6-logo {
-    width: 550px;
-    height: auto;
-    margin-bottom: 25px;
-    opacity: 0;
-    transform: scale(0.85);
-    filter: drop-shadow(0 0 40px rgba(230, 184, 0, 0.3));
-  }
+  width: 700px;        /* ← CHANGED FROM 550px TO 700px */
+  height: auto;
+  margin-bottom: 25px;
+  opacity: 0;
+  transform: scale(0.85);
+  filter: drop-shadow(0 0 40px rgba(230, 184, 0, 0.3));
+}
 
   .frame.active .f6-logo {
     animation: scaleReveal 1.1s ease 0.2s forwards;
@@ -616,11 +616,9 @@
     color: rgba(244, 196, 48, 0.8);
   }
 
-  @media (max-width: 1100px) {
-    .reel-container {
-      width: 100vmin;
-      height: 100vmin;
-    }
+@media (max-width: 1100px) {
+  .f6-logo { width: 520px; }  /* ← CHANGED FROM 400px TO 520px */
+}
     .ajg-logo-ramadan {
       width: 200px;
       top: 30px;
@@ -841,5 +839,6 @@
 
 </body>
 </html>
+
 
 

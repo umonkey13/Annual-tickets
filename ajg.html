@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alexander Johnson Group - Year of the Fire Horse 2026 (Autoplay)</title>
+<title>Alexander Johnson Group - Year of the Fire Horse 2026 (Larger Last Frame)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:wght@200;300;400;500;600&display=swap');
 
@@ -131,17 +131,17 @@
     pointer-events: none;
   }
 
-  /* ✅ AJG LOGO — TOP RIGHT — MADE MUCH LARGER (320px) */
+  /* AJG LOGO — TOP RIGHT — LARGE */
   .ajg-logo-top {
     position: absolute;
-    top: 50px;          /* slightly lower from top to feel balanced */
-    right: 50px;        /* position firmly in top right corner */
+    top: 50px;
+    right: 50px;
     left: auto;
-    z-index: 30;        /* keep above everything */
+    z-index: 30;
     opacity: 0;
     transition: opacity 1.5s ease;
     pointer-events: none;
-    width: 320px;       /* ⬅️ INCREASED FROM 220px → 320px — MUCH BIGGER */
+    width: 320px;
     height: auto;
   }
 
@@ -153,7 +153,7 @@
     width: 100%;
     height: auto;
     display: block;
-    filter: brightness(1.2) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.7)); /* stronger shadow for larger size */
+    filter: brightness(1.2) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.7));
   }
 
   /* Frame system */
@@ -362,15 +362,15 @@
     text-shadow: 0 0 25px rgba(0,0,0,0.9);
   }
 
-  /* Frame 6: AJG Logo - Large center logo */
+  /* ===== 🟢 FRAME 6 - ENLARGED LOGO & TEXT ===== */
   .f6-logo {
-    width: 500px;
+    width: 750px;        /* ⬅️ INCREASED FROM 500px TO 750px - 50% BIGGER */
     height: auto;
-    margin-bottom: 20px;
-    transform: scale(0.9);
+    margin-bottom: 25px;
+    transform: scale(1);  /* ⬅️ REMOVED scale(0.9) - NOW FULL SIZE */
     opacity: 0;
     transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
-    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.8));
+    filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.9));
   }
 
   .f6-logo img {
@@ -380,50 +380,50 @@
   }
 
   .f6-divider {
-    width: 60px;
+    width: 100px;        /* ⬅️ INCREASED FROM 60px TO 100px */
     height: 2px;
     background: linear-gradient(90deg, transparent, #C9A44C, transparent);
-    margin: 20px auto;
+    margin: 30px auto;    /* ⬅️ INCREASED MARGIN */
     transform: scaleX(0);
     transition: transform 1s ease 0.8s;
-    box-shadow: 0 0 20px rgba(201,164,76,0.6);
+    box-shadow: 0 0 30px rgba(201,164,76,0.8);
   }
 
   .f6-locations {
-    font-size: 18px;
+    font-size: 26px;      /* ⬅️ INCREASED FROM 18px TO 26px */
     font-weight: 300;
     letter-spacing: 0.5em;
     text-transform: uppercase;
     color: rgba(201, 164, 76, 0.95);
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     transform: translateY(10px);
     opacity: 0;
     transition: all 1s ease 1s;
-    text-shadow: 0 0 20px rgba(0,0,0,0.9);
+    text-shadow: 0 0 25px rgba(0,0,0,0.95);
   }
 
   .f6-tagline {
-    font-size: 26px;
+    font-size: 34px;      /* ⬅️ INCREASED FROM 26px TO 34px */
     font-weight: 400;
     font-style: italic;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     transform: translateY(10px);
     opacity: 0;
     transition: all 1s ease 1.3s;
-    line-height: 1.4;
-    text-shadow: 0 0 25px rgba(0,0,0,0.9);
+    line-height: 1.5;
+    text-shadow: 0 0 30px rgba(0,0,0,0.95);
   }
 
   .f6-url {
-    font-size: 16px;
+    font-size: 22px;      /* ⬅️ INCREASED FROM 16px TO 22px */
     font-weight: 300;
-    letter-spacing: 0.25em;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 25px;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 35px;
     transform: translateY(10px);
     opacity: 0;
     transition: all 1s ease 1.6s;
-    text-shadow: 0 0 15px rgba(0,0,0,0.9);
+    text-shadow: 0 0 20px rgba(0,0,0,0.95);
   }
 
   /* Active states */
@@ -452,7 +452,7 @@
     transform: scaleX(1);
   }
 
-  /* 🚫 PLAY OVERLAY — HIDDEN BY DEFAULT TO ENABLE AUTOPLAY */
+  /* PLAY OVERLAY — HIDDEN (AUTOPLAY) */
   .play-overlay {
     position: absolute;
     top: 0; left: 0;
@@ -466,8 +466,8 @@
     background: rgba(0, 0, 0, 0.9);
     cursor: pointer;
     transition: opacity 0.5s ease;
-    opacity: 0;            /* ⬅️ HIDDEN – AUTOPLAY STARTS INSTANTLY */
-    pointer-events: none;  /* ⬅️ NO CLICK NEEDED */
+    opacity: 0;
+    pointer-events: none;
   }
 
   .play-overlay.hidden {
@@ -504,6 +504,7 @@
     text-transform: uppercase;
   }
 
+  /* ===== RESPONSIVE - LARGER LAST FRAME ===== */
   @media (max-width: 1100px) {
     .reel-container {
       width: 100vmin;
@@ -511,13 +512,25 @@
     }
     
     .ajg-logo-top {
-      width: 260px;       /* responsive - still big */
+      width: 260px;
       top: 30px;
       right: 30px;
     }
     
     .f6-logo {
-      width: 350px;
+      width: 550px;      /* ⬅️ INCREASED FROM 350px TO 550px */
+    }
+    
+    .f6-locations {
+      font-size: 22px;
+    }
+    
+    .f6-tagline {
+      font-size: 28px;
+    }
+    
+    .f6-url {
+      font-size: 18px;
     }
   }
 </style>
@@ -527,31 +540,23 @@
 <div class="reel-container" id="reel">
   <!-- Horse video background -->
   <video class="horse-video" id="horseVideo" loop muted playsinline>
-    <!-- IMPORTANT: Replace with your actual web path when uploading to server -->
     <source src="/videos/horse-galloping-desert.mp4" type="video/mp4">
-    <!-- Local development fallback - remove before uploading to server -->
     <source src="https://cdn.jsdelivr.net/gh/umonkey13/Annual-tickets@refs/heads/main/vecteezy_horse-galloping-across-desert-dunes-with-golden-sunset_73208532.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <!-- Epic Adventure by m7n - Background Music -->
+  <!-- Background Music -->
   <audio id="bgMusic" loop preload="auto">
-    <!-- IMPORTANT: You need to download and host this audio file -->
     <source src="/audio/epic-adventure-m7n.mp3" type="audio/mpeg">
-    <!-- Local development fallback -->
     <source src="C:\Users\Simon\Downloads\epic-adventure-m7n.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Strong black overlay over video -->
+  <!-- Overlays -->
   <div class="black-overlay" id="blackOverlay"></div>
-
-  <!-- Subtle warm gradient overlay -->
   <div class="bg-gradient" id="bgGradient">
     <div class="bg-gradient-inner"></div>
   </div>
-
-  <!-- Accent lines - only top and bottom remain -->
   <div class="accent-lines" id="accentLines">
     <div class="accent-line"></div>
     <div class="accent-line"></div>
@@ -560,11 +565,12 @@
   <!-- Ember particles -->
   <canvas id="embers"></canvas>
 
-  <!-- ✅ AJG Logo - TOP RIGHT - MUCH LARGER (320px) -->
+  <!-- AJG Logo - TOP RIGHT -->
   <div class="ajg-logo-top" id="ajgLogoTop">
+    <img src="https://cdn.jsdelivr.net/gh/umonkey13/Annual-tickets@main/AJG-Logo-Post.png" alt="Alexander Johnson Group">
   </div>
 
-  <!-- 🚫 PLAY OVERLAY — hidden; autoplay enabled -->
+  <!-- PLAY OVERLAY (hidden) -->
   <div class="play-overlay" id="playOverlay">
     <div class="play-btn">
       <svg viewBox="0 0 24 24"><polygon points="6,3 20,12 6,21"/></svg>
@@ -609,11 +615,10 @@
     <div class="f5-body serif">The investors who move with clarity and conviction in a Fire Horse year are the ones who shape what comes next.</div>
   </div>
 
-  <!-- Frame 6: AJG Logo - Large centered PNG -->
+  <!-- ===== FRAME 6 - NOW WITH MUCH LARGER LOGO & TEXT ===== -->
   <div class="frame" id="frame6">
     <div class="f6-logo">
       <img src="https://cdn.jsdelivr.net/gh/umonkey13/Annual-tickets@main/Untitled-1.png" alt="Alexander Johnson Group Logo">
-      <img src="https://cdn.jsdelivr.net/gh/umonkey13/Annual-tickets@main/Untitled-1.png" alt="Alexander Johnson Group Logo" style="display: none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';">
     </div>
     <div class="f6-divider"></div>
     <div class="f6-locations sans">Dubai HQ &nbsp;&middot;&nbsp; London</div>
@@ -623,7 +628,7 @@
 </div>
 
 <script>
-  // Ember particles (fire effect, from bottom)
+  // Ember particles (fire effect)
   const canvas = document.getElementById('embers');
   const ctx = canvas.getContext('2d');
   let embers = [];
@@ -699,30 +704,23 @@
     }, 800);
   }
 
-  // ✅ AUTOPLAY: run startReel() immediately after load without requiring click
+  // AUTOPLAY
   function startReel() {
-    // Hide play overlay (already hidden, but ensure hidden class)
     document.getElementById('playOverlay').classList.add('hidden');
     
-    // Video
     const video = document.getElementById('horseVideo');
     video.classList.add('active');
     video.play().catch(e => console.log('Video autoplay failed:', e));
     
-    // Audio
     const audio = document.getElementById('bgMusic');
     audio.volume = 0.7;
     audio.play().catch(e => console.log('Audio autoplay failed:', e));
     
-    // Overlays
     document.getElementById('blackOverlay').classList.add('active');
     document.getElementById('bgGradient').classList.add('active');
     document.getElementById('accentLines').classList.add('active');
     
-    // Ember canvas
     canvas.style.opacity = '1';
-    
-    // ✅ Show large top-right logo
     document.getElementById('ajgLogoTop').classList.add('active');
 
     initCanvas();
@@ -731,7 +729,6 @@
     setTimeout(() => showFrame(0), 500);
   }
 
-  // Initialize canvas and preload media, then start automatically
   window.addEventListener('load', function() {
     canvas.width = 1080;
     canvas.height = 1080;
@@ -742,11 +739,9 @@
     const audio = document.getElementById('bgMusic');
     audio.load();
     
-    // ✅ START AUTOPLAY — no click required
-    setTimeout(startReel, 300); // small delay to ensure DOM is ready
+    setTimeout(startReel, 300);
   });
 
-  // (Optional) if someone clicks overlay, it's hidden anyway; but we keep listener
   document.getElementById('playOverlay').addEventListener('click', startReel);
 </script>
 

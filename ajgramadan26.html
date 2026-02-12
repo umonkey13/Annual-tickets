@@ -615,10 +615,9 @@
     requestAnimationFrame(animateSparks);
   }
 
-  // ===== UPDATED FRAME TIMING (EASIER TO READ) =====
-  // Previous: [2600, 2800, 3400, 3600, 3200, 4000]
-  // New: approx 1.5 - 2 seconds added to each
-  const frameDurations = [4200, 5000, 5900, 6000, 5300, 6000];
+  // ===== UPDATED FRAME TIMINGS (EXTENDED FOR READABILITY) =====
+  // 1: Introduction, 2: Warmth, 3: UAE Stats, 4: Gratitude, 5: Unity, 6: Logo/End
+  const frameDurations = [4200, 6500, 8500, 8500, 7500, 7000];
   const frames = document.querySelectorAll('.frame');
 
   function showFrame(index) {
@@ -660,7 +659,3 @@
 
 </body>
 </html>
-
-
-
-
